@@ -15,10 +15,9 @@ import javax.swing.event.*;
 
 public class Proyecto extends JFrame implements ActionListener {
 	//Cosos que nos van a servir
-	private int contador =  0;
 	private JButton btn1;
 	private JPanel pnl1, pnl2, pnl3;
-	private JLabel lblTitle;
+	private JLabel lblTitle, lblPregunta;
 	private String[] strPregunta = {
 					"<html>Se busca prestigiar al IMPC como una empresa a nivel nacional e internacional<br/>" +
 									"mediante un plan elaborado que cumpla con valores éticos refrendando los valores<br/>" +
@@ -108,9 +107,9 @@ public class Proyecto extends JFrame implements ActionListener {
 					strRespuestas[8][1],
 					strRespuestas[9][1],
 	};
-	private JRadioButton[][] rRespuestas = new JRadioButton[strPregunta.length][4];
-	private ButtonGroup[] bgRespuestas = new ButtonGroup[strPregunta.length];
-
+	private JRadioButton[] rRespuestas = new JRadioButton[4];
+	private ButtonGroup bgRespuestas = new ButtonGroup();
+	private int contador =  0, correctas = 0, errores = 0, preguntas = strPregunta.length, vidas = 6;
 
 	//Creación de la ventana
 	public static void main(String[] ar) {
@@ -122,12 +121,9 @@ public class Proyecto extends JFrame implements ActionListener {
 	}
 	//Creación de los cosos que van en la ventana
 	public Proyecto() {
-		for (int i = 0; i < bgRespuestas.length; i++){
-			bgRespuestas[i] = new ButtonGroup();
-			for (int j = 0; j < strRespuestas[i].length; j++){
-				rRespuestas[i][j] = new JRadioButton(System.lineSeparator() + strRespuestas[i][j]);
-				bgRespuestas[i].add(rRespuestas[i][j]);
-			}
+		for (int i = 0; i < strRespuestas[contador].length; i++){
+			rRespuestas[i] = new JRadioButton(strRespuestas[contador][i]);
+			bgRespuestas.add(rRespuestas[i]);
 		}
 		Container ventana = getContentPane();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -151,7 +147,19 @@ public class Proyecto extends JFrame implements ActionListener {
 		pnl2.setPreferredSize(new Dimension(695, 300));
 		pnl2.setBackground(Color.white);
 		ventana.add(pnl2);
-		printPregunta(ventana, pnl2, contador, strPregunta, rRespuestas);
+		// Impresión de pregunta
+		JPanel pnlPregunta = new JPanel();
+		pnlPregunta.setPreferredSize(new Dimension(600, 100));
+		lblPregunta = new JLabel(strPregunta[contador]);
+		// printPregunta(ventana, pnl2, contador, strPregunta, rRespuestas);
+		pnl2.add(pnlPregunta.add(lblPregunta));
+		JPanel pnlRespuesta[] = {new JPanel(), new JPanel(), new JPanel(), new JPanel()};
+		for (int i = 0; i < rRespuestas.length; i++){
+			pnlRespuesta[i].setPreferredSize(new Dimension(300, 50));
+			pnlRespuesta[i].add(rRespuestas[i]);
+			pnl2.add(pnlRespuesta[i]);
+		}
+		// Botón de verificación
 		btn1 = new JButton("Verificar");
 		btn1.setBounds(300,385,100,30);
 		btn1.addActionListener(this);
@@ -161,26 +169,6 @@ public class Proyecto extends JFrame implements ActionListener {
 		pnl3.setPreferredSize(new Dimension(695, 60));
 		pnl3.setBackground(Color.white);
 		ventana.add(pnl3.add(btn1));
-	}
-	//Acción del botón
-	public void printPregunta(Container ventana, JPanel pnl, int intNPregunta, String preguntas[], JRadioButton respuestas[][]){
-		ventana = getContentPane();
-		ventana.remove(pnl);
-		JPanel pnlPregunta = new JPanel();
-		String strPreguntaPrint = preguntas[intNPregunta];
-		JRadioButton[] rRespuestasPrint = respuestas[intNPregunta];
-		JLabel lblPregunta = new JLabel(strPreguntaPrint);
-		pnlPregunta.setPreferredSize(new Dimension(600, 100));
-		// pnlPregunta.setBounds(10, 20, 1000, 50);
-		pnl.add(pnlPregunta.add(lblPregunta));
-		JPanel pnlRespuesta[] = {new JPanel(), new JPanel(), new JPanel(), new JPanel()};
-		for (int i = 0; i < rRespuestasPrint.length; i++){
-			pnlRespuesta[i].setPreferredSize(new Dimension(300, 50));
-			pnlRespuesta[i].removeAll();
-			pnlRespuesta[i].add(rRespuestasPrint[i]);
-			pnl.add(pnlRespuesta[i]);
-		}
-		ventana.add(pnl);
 	}
 	public static boolean checkPregunta(int intNPregunta, String respuesta, String[] clave){
 		if(respuesta.equals(clave[intNPregunta])){
@@ -192,27 +180,40 @@ public class Proyecto extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		//Variable para saber el número de pregunta
-		Container ventana = getContentPane();
 		int intRespuesta;
 		boolean respondido = false;
 		if (e.getSource() == btn1) {
 			// Revisa qué radio se seleccionó
-			for (int i = 0; i < rRespuestas[contador].length; i++){
-				if(rRespuestas[contador][i].isSelected()){
+			for (int i = 0; i < rRespuestas.length; i++){
+				if(rRespuestas[i].isSelected()){
 					respondido = true;
 					intRespuesta = i;
-					String txt = rRespuestas[contador][intRespuesta].getText().replace("\n", "");
+					String txt = rRespuestas[intRespuesta].getText().replace("\n", "");
 					boolean respuesta = checkPregunta(contador, txt, clave);
 					if(respuesta){
+						correctas++;
+						if(correctas == preguntas){
+							JOptionPane.showMessageDialog(null, "Ganaste uwuwuwuwuwuwu");
+							System.exit(1);
+						}
 						contador++;
-						printPregunta(ventana, pnl2, contador, strPregunta, rRespuestas);
-
+						lblPregunta.setText(strPregunta[contador]);
+						for(int j = 0; j < rRespuestas.length; j++){
+							rRespuestas[j].setText(strRespuestas[contador][j]);
+						}
+						bgRespuestas.clearSelection();
 					}else{
-						JOptionPane.showMessageDialog(null, "Terrible, oremos");
+						errores++;
+						int nVidas = vidas - errores;
+						JOptionPane.showMessageDialog(null, "Has cometido un error, llevas " + errores + " error(es)\nTe quedan " + nVidas + " vidas");
+						if(errores == vidas){
+							JOptionPane.showMessageDialog(null, "Lo mataste ya lárgate de aquí");
+							System.exit(0);
+						}
 						// Manejo de imágenes
 					}
-					JOptionPane.showMessageDialog(null, "Vamos en la pregunta " + contador);
+					int nPregunta = contador + 1;
+					JOptionPane.showMessageDialog(null, "Vamos en la pregunta " + nPregunta);
 					break;
 				}
 			}
