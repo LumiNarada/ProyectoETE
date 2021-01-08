@@ -9,6 +9,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.Math; // Para obtener números aleatorios
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -121,6 +122,7 @@ public class Proyecto extends JFrame implements ActionListener {
 	}
 	//Creación de los cosos que van en la ventana
 	public Proyecto() {
+		strRespuestas[contador] = randomize(strRespuestas[contador]);
 		for (int i = 0; i < strRespuestas[contador].length; i++){
 			rRespuestas[i] = new JRadioButton(strRespuestas[contador][i]);
 			bgRespuestas.add(rRespuestas[i]);
@@ -198,6 +200,7 @@ public class Proyecto extends JFrame implements ActionListener {
 						}
 						contador++;
 						lblPregunta.setText(strPregunta[contador]);
+						strRespuestas[contador] = randomize(strRespuestas[contador]);
 						for(int j = 0; j < rRespuestas.length; j++){
 							rRespuestas[j].setText(strRespuestas[contador][j]);
 						}
@@ -221,5 +224,15 @@ public class Proyecto extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Selecciona una opción");
 			}
 		}
-	} 
+	}
+	public static String[] randomize(String[] arreglo){
+		for(int i = 0; i < arreglo.length; i++){
+			int maximo = arreglo.length;
+			int indiceQueCambia = (int)(Math.random()*(maximo));
+			String temporal = arreglo[indiceQueCambia];
+			arreglo[indiceQueCambia] = arreglo [i];
+			arreglo[i] = temporal;
+		}
+		return arreglo;
+	}
 }
