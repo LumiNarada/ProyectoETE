@@ -2,14 +2,14 @@
 *@Programa: 	Cotizaciones.java
 *Autor:    		Damian "The Magnificent" & Lenin "La Qlonsisima"
 *Fecha:    		04/12/2020
-*Descripci贸n: El trabajo de las Zorras
+*Descripci贸n: 	Si
 *
 *******/
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.Math; // Para obtener n煤meros aleatorios
+import java.lang.Math; // Para obtener n鷐eros aleatorios
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -17,13 +17,13 @@ import javax.swing.event.*;
 public class Proyecto extends JFrame implements ActionListener {
 	//Cosos que nos van a servir
 	private JButton btn1;
-	private JPanel pnl1, pnl2, pnl3;
+	private JPanel pnlA, pnltitle, pnlPr, pnlRe, pnlBu;
 	private JLabel lblTitle, lblPregunta;
+	private JRadioButton[] rRespuestas = new JRadioButton[4];
+	private ButtonGroup bgRespuestas = new ButtonGroup();
 	private String[] strPregunta = {
-					"<html>Se busca prestigiar al IMPC como una empresa a nivel nacional e internacional<br/>" +
-									"mediante un plan elaborado que cumpla con valores 茅ticos refrendando los valores<br/>" +
-									"y la pol铆tica de la instituci贸n y enfrentando los retos que demanda la profesi贸n en<br/>" +
-									"un espacio de trabajo</html>",
+					
+					"<html> Ay no	<br> que	<br> flojera	<br><html/>",
 					"Pregunta 2",
 					"Pregunta 3",
 					"Pregunta 4",
@@ -108,70 +108,76 @@ public class Proyecto extends JFrame implements ActionListener {
 					strRespuestas[8][1],
 					strRespuestas[9][1],
 	};
-	private JRadioButton[] rRespuestas = new JRadioButton[4];
-	private ButtonGroup bgRespuestas = new ButtonGroup();
 	private int contador =  0, correctas = 0, errores = 0, preguntas = strPregunta.length, vidas = 6;
-
-	//Creaci贸n de la ventana
+	
+	//Creaci髇 de la ventana
 	public static void main(String[] ar) {
 		Proyecto juego = new Proyecto();
 		juego.setSize(700, 500);
-		//juego.setBounds(70,70,700,480);
+		juego.setBounds(70,70,700,480);
 		juego.setTitle("CoyoAhorcadas");
 		juego.setVisible(true);
 	}
-	//Creaci贸n de los cosos que van en la ventana
+
+	//Creaci髇 de los elementos de la ventana
 	public Proyecto() {
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLayout(null);
+		
+		// Panel del T韙ulo
+		lblTitle = new JLabel ("Las preguntas los Contadores");
+		lblTitle.setBounds(270,10,300,30);
+		add(lblTitle);
+		pnltitle = new JPanel();
+		pnltitle.setBounds(10,10,663,30);
+		pnltitle.setBackground(Color.white);
+		add(pnltitle);
+		
+		// Panel del dibujo del ahorcado
+		pnlA = new JPanel();
+		pnlA.setBounds(10,50,320,300);
+		pnlA.setBackground(Color.white);
+		add(pnlA);
+
+		// Panel de las Preguntas
+		pnlPr = new JPanel();
+		pnlPr.setBounds(340,50,330,60);
+		pnlPr.setBackground(Color.white);
+		add(pnlPr);
+		//Elaboraci髇 de pregunta	
+		lblPregunta = new JLabel(strPregunta[contador]);
+		pnlPr.add(lblPregunta);  
+		
+		//Panel para las respuestas
+		pnlRe = new JPanel();
+		pnlRe.setBounds(340,120,330,230);
+		pnlRe.setBackground(Color.white);
+		add(pnlRe);
+		//Elaboraci髇 de las opciones de respuesta
 		strRespuestas[contador] = randomize(strRespuestas[contador]);
 		for (int i = 0; i < strRespuestas[contador].length; i++){
 			rRespuestas[i] = new JRadioButton(strRespuestas[contador][i]);
 			bgRespuestas.add(rRespuestas[i]);
 		}
-		Container ventana = getContentPane();
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		ventana.setLayout(new FlowLayout());
-		// T铆tulo
-		lblTitle = new JLabel ("Las preguntas de Lap Uta");
-		lblTitle.setBounds(270,10,300,30);
-		ventana.add(lblTitle);
-		// Cuestionario
-		pnl1 = new JPanel();
-		pnl1.setPreferredSize(new Dimension(695, 30));
-		//pnl1.setBounds(10,10,663,30);
-		pnl1.setBackground(Color.white);
-		pnl1.add(lblTitle);
-		ventana.add(pnl1);
-
-		// Preguntas y respuestas
-
-		pnl2 = new JPanel();
-		//pnl2.setBounds(10,50,663,300);
-		pnl2.setPreferredSize(new Dimension(695, 300));
-		pnl2.setBackground(Color.white);
-		ventana.add(pnl2);
-		// Impresi贸n de pregunta
-		JPanel pnlPregunta = new JPanel();
-		pnlPregunta.setPreferredSize(new Dimension(600, 100));
-		lblPregunta = new JLabel(strPregunta[contador]);
-		// printPregunta(ventana, pnl2, contador, strPregunta, rRespuestas);
-		pnl2.add(pnlPregunta.add(lblPregunta));
 		JPanel pnlRespuesta[] = {new JPanel(), new JPanel(), new JPanel(), new JPanel()};
 		for (int i = 0; i < rRespuestas.length; i++){
 			pnlRespuesta[i].setPreferredSize(new Dimension(300, 50));
 			pnlRespuesta[i].add(rRespuestas[i]);
-			pnl2.add(pnlRespuesta[i]);
+			pnlRe.add(pnlRespuesta[i]);
 		}
-		// Bot贸n de verificaci贸n
+		
+		// Panel y Bot髇 de verificaci髇
 		btn1 = new JButton("Verificar");
 		btn1.setBounds(300,385,100,30);
 		btn1.addActionListener(this);
-
-		pnl3 = new JPanel();
-		//pnl3.setBounds(10,360,663,70);
-		pnl3.setPreferredSize(new Dimension(695, 60));
-		pnl3.setBackground(Color.white);
-		ventana.add(pnl3.add(btn1));
+		add(btn1);
+		pnlBu = new JPanel();
+		pnlBu.setBounds(10,360,663,70);
+		pnlBu.setBackground(Color.white);
+		add(pnlBu);
+		
 	}
+	
 	public static boolean checkPregunta(int intNPregunta, String respuesta, String[] clave){
 		if(respuesta.equals(clave[intNPregunta])){
 			JOptionPane.showMessageDialog(null, "Respuesta correcta");
@@ -224,7 +230,26 @@ public class Proyecto extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Selecciona una opci贸n");
 			}
 		}
+		
+		/*Graphics ahorca = pnlA.getGraphics();
+		ahorca.setColor(Color.BLACK);
+		ahorca.setColor(new Color(90, 41, 11 ));
+		//ahorca.clearRect(442, 0, 16, 450);
+		ahorca.drawLine(10, 10, 100, 100);
+		ahorca.setColor(Color.GRAY);
+		ahorca.drawOval(20, 20, 150, 150);*/
 	}
+	
+	public void paint (Graphics ahorca){
+		super.paint(ahorca);
+		ahorca.setColor(Color.BLACK);
+		//ahorca.setColor(new Color(90, 41, 11 ));
+		//ahorca.clearRect(442, 0, 16, 450);
+		ahorca.drawLine(70, 130, 70, 300);
+		//ahorca.setColor(Color.GRAY);
+		//ahorca.drawOval(20, 20, 150, 150);
+	}
+	
 	public static String[] randomize(String[] arreglo){
 		for(int i = 0; i < arreglo.length; i++){
 			int maximo = arreglo.length;
