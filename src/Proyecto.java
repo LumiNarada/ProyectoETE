@@ -15,31 +15,33 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 public class Proyecto extends JFrame implements ActionListener {
-	//Cosos que nos van a servir
+	//Objetos heredados de la biblioteca swing
 	private JButton btn1;
 	private JPanel pnlA, pnltitle, pnlPr, pnlRe, pnlBu;
 	private JLabel lblTitle, lblPregunta;
 	private JRadioButton[] rRespuestas = new JRadioButton[4];
 	private ButtonGroup bgRespuestas = new ButtonGroup();
+	//Arreglo que almacena las preguntas
 	private String[] strPregunta = {
 					
-					"<html> Ay no	<br> que	<br> flojera	<br><html/>",
-					"Pregunta 2",
-					"Pregunta 3",
-					"Pregunta 4",
-					"Pregunta 5",
-					"Pregunta 6",
-					"Pregunta 7",
-					"Pregunta 8",
-					"Pregunta 9",
-					"Pregunta 10"
+					"<html> Pregunta 1 <br> ¿Qué es un Sistema Operativo? <html/>",
+					"<html> Pregunta 2 <br> ",
+					"<html> Pregunta 3 <br>",
+					"<html> Pregunta 4 <br>",
+					"<html> Pregunta 5 <br>",
+					"<html> Pregunta 6 <br>",
+					"<html> Pregunta 7 <br>",
+					"<html> Pregunta 8 <br>",
+					"<html> Pregunta 9 <br>",
+					"<html> Pregunta 10 <br>"
 	};
+	//Arreglo que almacena las opciones de respuesta
 	private String[][] strRespuestas = {
 					{
-									"<html>" + "Respuesta 1" + "</html>",
-									"<html>" + "Respuesta 2" + "</html>",
-									"<html>" + "Respuesta 3" + "</html>",
-									"<html>" + "Respuesta 4" + "</html>"
+									"<html> Programa que automatiza procesos <br> básicos de un dispositivo </html>",
+									"<html> Programa que administra solo el <br> software de un dispositivo </html>",
+									"<html> Programa que administra solo el <br> hardware de un dispositivo </html>",
+									"<html> Programa que esá diseñado solo <br> para el manejo de telefonos </html>"
 					},
 					{
 									"Respuesta 1",
@@ -96,17 +98,18 @@ public class Proyecto extends JFrame implements ActionListener {
 									"Respuesta 4"
 					}
 	};
+	//Arreglo que almacena las respuestas correctas
 	private String[] clave = {
-					strRespuestas[0][1],
-					strRespuestas[1][1],
-					strRespuestas[2][1],
-					strRespuestas[3][1],
-					strRespuestas[4][1],
-					strRespuestas[5][1],
-					strRespuestas[6][1],
-					strRespuestas[7][1],
-					strRespuestas[8][1],
-					strRespuestas[9][1],
+					strRespuestas[0][0],
+					strRespuestas[1][0],
+					strRespuestas[2][0],
+					strRespuestas[3][0],
+					strRespuestas[4][0],
+					strRespuestas[5][0],
+					strRespuestas[6][0],
+					strRespuestas[7][0],
+					strRespuestas[8][0],
+					strRespuestas[9][0],
 	};
 	private int contador =  0, correctas = 0, errores = 0, preguntas = strPregunta.length, vidas = 6;
 	
@@ -178,26 +181,30 @@ public class Proyecto extends JFrame implements ActionListener {
 		
 	}
 	
+	//Corroboración de la respuesta
 	public static boolean checkPregunta(int intNPregunta, String respuesta, String[] clave){
 		if(respuesta.equals(clave[intNPregunta])){
 			JOptionPane.showMessageDialog(null, "Respuesta correcta");
 			return true;
 		}
-		JOptionPane.showMessageDialog(null, "Respuesta errÃ³nea");
+		JOptionPane.showMessageDialog(null, "Respuesta errónea");
 		return false;
 	}
-
+	
+	//Acción realizada al presionar un botón
 	public void actionPerformed(ActionEvent e) {
-		int intRespuesta;
-		boolean respondido = false;
+		//Cuando se presiona "Verifica"
 		if (e.getSource() == btn1) {
-			// Revisa quÃ© radio se seleccionÃ³
+			int intRespuesta;
+			boolean respondido = false;
+			// Revisa que radio se seleccionó
 			for (int i = 0; i < rRespuestas.length; i++){
 				if(rRespuestas[i].isSelected()){
 					respondido = true;
 					intRespuesta = i;
 					String txt = rRespuestas[intRespuesta].getText().replace("\n", "");
 					boolean respuesta = checkPregunta(contador, txt, clave);
+					//La respuesta es correcta
 					if(respuesta){
 						correctas++;
 						if(correctas == preguntas){
@@ -211,45 +218,74 @@ public class Proyecto extends JFrame implements ActionListener {
 							rRespuestas[j].setText(strRespuestas[contador][j]);
 						}
 						bgRespuestas.clearSelection();
+					//la respuesta es falsa
 					}else{
 						errores++;
 						int nVidas = vidas - errores;
 						JOptionPane.showMessageDialog(null, "Has cometido un error, llevas " + errores + " error(es)\nTe quedan " + nVidas + " vidas");
+						Graphics ahorca = pnlA.getGraphics();
+						ahorca.setColor(Color.BLACK);
+						switch (nVidas) {				        
+				        	case 5:
+				        		ahorca.drawOval(217, 80, 30, 30);
+				        	break;
+				        
+				        	case 4:
+				        		ahorca.drawLine(232, 110, 232, 170);
+				        	break;
+				        		
+				        	case 3:
+				        		ahorca.drawLine(231, 110, 220, 140);
+				        	break;	
+				        
+				        	case 2:
+				        		ahorca.drawLine(233, 110, 244, 140);
+				        	break;
+						
+				        	case 1:
+				        		ahorca.drawLine(231, 170, 220, 200);
+				        	break;
+						
+				        	case 0:
+				        		ahorca.drawLine(233, 170, 244, 200);
+				        	break;
+				        
+				        	default:
+				        
+				        	break; 
+						}
+						//Si has tenido 6 errores, pierdes el juego
 						if(errores == vidas){
-							JOptionPane.showMessageDialog(null, "Lo mataste ya lÃ¡rgate de aquÃ­");
+							JOptionPane.showMessageDialog(null, "Lo mataste, ya lárgate de aquí");
 							System.exit(0);
 						}
-						// Manejo de imÃ¡genes
 					}
 					int nPregunta = contador + 1;
 					JOptionPane.showMessageDialog(null, "Vamos en la pregunta " + nPregunta);
 					break;
 				}
 			}
+			//Si el boton de verificar se ha presionado sin seleccionar una respuesta
 			if(!respondido){
-				JOptionPane.showMessageDialog(null, "Selecciona una opciÃ³n");
+				JOptionPane.showMessageDialog(null, "Selecciona una opción");
 			}
 		}
 		
-		/*Graphics ahorca = pnlA.getGraphics();
-		ahorca.setColor(Color.BLACK);
-		ahorca.setColor(new Color(90, 41, 11 ));
-		//ahorca.clearRect(442, 0, 16, 450);
-		ahorca.drawLine(10, 10, 100, 100);
-		ahorca.setColor(Color.GRAY);
-		ahorca.drawOval(20, 20, 150, 150);*/
+		//Boton de limpiar, creo
+		
+		//Boton de salir?
 	}
-	
+	//Dibujo base del ahorcado
 	public void paint (Graphics ahorca){
 		super.paint(ahorca);
 		ahorca.setColor(Color.BLACK);
-		//ahorca.setColor(new Color(90, 41, 11 ));
-		//ahorca.clearRect(442, 0, 16, 450);
-		ahorca.drawLine(70, 130, 70, 300);
-		//ahorca.setColor(Color.GRAY);
-		//ahorca.drawOval(20, 20, 150, 150);
+		ahorca.drawRect(70, 330, 70, 10);
+		ahorca.drawLine(100, 130, 100, 330);
+		ahorca.drawLine(70, 130, 250, 130);
+		ahorca.drawLine(100, 170, 130, 130);
+		ahorca.drawLine(250, 130, 250, 160);
 	}
-	
+	//nOsEkEsestA
 	public static String[] randomize(String[] arreglo){
 		for(int i = 0; i < arreglo.length; i++){
 			int maximo = arreglo.length;
