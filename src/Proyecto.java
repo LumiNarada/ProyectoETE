@@ -9,14 +9,14 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.Math; // Para obtener números aleatorios
+import java.lang.Math; // Para obtener nï¿½meros aleatorios
 
 import javax.swing.*;
 import javax.swing.event.*;
 
 public class Proyecto extends JFrame implements ActionListener {
 	//Objetos heredados de la biblioteca swing
-	private JButton btn1;
+	private JButton btn1, btn2;
 	private JPanel pnlA, pnltitle, pnlPr, pnlRe, pnlBu;
 	private JLabel lblTitle, lblPregunta;
 	private JRadioButton[] rRespuestas = new JRadioButton[4];
@@ -24,7 +24,7 @@ public class Proyecto extends JFrame implements ActionListener {
 	//Arreglo que almacena las preguntas
 	private String[] strPregunta = {
 					
-					"<html> Pregunta 1 <br> ¿Qué es un Sistema Operativo? <html/>",
+					"<html> Pregunta 1 <br> ï¿½Quï¿½ es un Sistema Operativo? <html/>",
 					"<html> Pregunta 2 <br> ",
 					"<html> Pregunta 3 <br>",
 					"<html> Pregunta 4 <br>",
@@ -38,10 +38,10 @@ public class Proyecto extends JFrame implements ActionListener {
 	//Arreglo que almacena las opciones de respuesta
 	private String[][] strRespuestas = {
 					{
-									"<html> Programa que automatiza procesos <br> básicos de un dispositivo </html>",
+									"<html> Programa que automatiza procesos <br> bï¿½sicos de un dispositivo </html>",
 									"<html> Programa que administra solo el <br> software de un dispositivo </html>",
 									"<html> Programa que administra solo el <br> hardware de un dispositivo </html>",
-									"<html> Programa que esá diseñado solo <br> para el manejo de telefonos </html>"
+									"<html> Programa que esï¿½ diseï¿½ado solo <br> para el manejo de telefonos </html>"
 					},
 					{
 									"Respuesta 1",
@@ -113,7 +113,7 @@ public class Proyecto extends JFrame implements ActionListener {
 	};
 	private int contador =  0, correctas = 0, errores = 0, preguntas = strPregunta.length, vidas = 6;
 	
-	//Creación de la ventana
+	//Creaciï¿½n de la ventana
 	public static void main(String[] ar) {
 		Proyecto juego = new Proyecto();
 		juego.setSize(700, 500);
@@ -122,12 +122,12 @@ public class Proyecto extends JFrame implements ActionListener {
 		juego.setVisible(true);
 	}
 
-	//Creación de los elementos de la ventana
+	//Creaciï¿½n de los elementos de la ventana
 	public Proyecto() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
 		
-		// Panel del Título
+		// Panel del Tï¿½tulo
 		lblTitle = new JLabel ("Las preguntas los Contadores");
 		lblTitle.setBounds(270,10,300,30);
 		add(lblTitle);
@@ -147,7 +147,7 @@ public class Proyecto extends JFrame implements ActionListener {
 		pnlPr.setBounds(340,50,330,60);
 		pnlPr.setBackground(Color.white);
 		add(pnlPr);
-		//Elaboración de pregunta	
+		//Elaboraciï¿½n de pregunta	
 		lblPregunta = new JLabel(strPregunta[contador]);
 		pnlPr.add(lblPregunta);  
 		
@@ -156,7 +156,7 @@ public class Proyecto extends JFrame implements ActionListener {
 		pnlRe.setBounds(340,120,330,230);
 		pnlRe.setBackground(Color.white);
 		add(pnlRe);
-		//Elaboración de las opciones de respuesta
+		//Elaboraciï¿½n de las opciones de respuesta
 		strRespuestas[contador] = randomize(strRespuestas[contador]);
 		for (int i = 0; i < strRespuestas[contador].length; i++){
 			rRespuestas[i] = new JRadioButton(strRespuestas[contador][i]);
@@ -169,35 +169,43 @@ public class Proyecto extends JFrame implements ActionListener {
 			pnlRe.add(pnlRespuesta[i]);
 		}
 		
-		// Panel y Botón de verificación
+		// Panel y Botï¿½n de verificaciï¿½n
 		btn1 = new JButton("Verificar");
 		btn1.setBounds(300,385,100,30);
 		btn1.addActionListener(this);
 		add(btn1);
+		btn2 = new JButton("Salida");
+		btn2.setBounds(500,385,100,30);
+		btn2.addActionListener(this);
+		add(btn2);
 		pnlBu = new JPanel();
 		pnlBu.setBounds(10,360,663,70);
 		pnlBu.setBackground(Color.white);
 		add(pnlBu);
-		
+
+
 	}
 	
-	//Corroboración de la respuesta
+	//Corroboraciï¿½n de la respuesta
 	public static boolean checkPregunta(int intNPregunta, String respuesta, String[] clave){
+		//JOptionPane.showMessageDialog(null, respuesta);
+		//JOptionPane.showMessageDialog(null, clave);
 		if(respuesta.equals(clave[intNPregunta])){
 			JOptionPane.showMessageDialog(null, "Respuesta correcta");
 			return true;
 		}
-		JOptionPane.showMessageDialog(null, "Respuesta errónea");
+		JOptionPane.showMessageDialog(null, "Respuesta errÃ³nea");
 		return false;
 	}
 	
-	//Acción realizada al presionar un botón
+	//Acciï¿½n realizada al presionar un botï¿½n
 	public void actionPerformed(ActionEvent e) {
 		//Cuando se presiona "Verifica"
-		if (e.getSource() == btn1) {
+		Object origen = e.getSource();
+		if (origen == btn1) {
 			int intRespuesta;
 			boolean respondido = false;
-			// Revisa que radio se seleccionó
+			// Revisa que radio se seleccionï¿½
 			for (int i = 0; i < rRespuestas.length; i++){
 				if(rRespuestas[i].isSelected()){
 					respondido = true;
@@ -256,7 +264,7 @@ public class Proyecto extends JFrame implements ActionListener {
 						}
 						//Si has tenido 6 errores, pierdes el juego
 						if(errores == vidas){
-							JOptionPane.showMessageDialog(null, "Lo mataste, ya lárgate de aquí");
+							JOptionPane.showMessageDialog(null, "Lo mataste, ya lï¿½rgate de aquï¿½");
 							System.exit(0);
 						}
 					}
@@ -267,15 +275,19 @@ public class Proyecto extends JFrame implements ActionListener {
 			}
 			//Si el boton de verificar se ha presionado sin seleccionar una respuesta
 			if(!respondido){
-				JOptionPane.showMessageDialog(null, "Selecciona una opción");
+				JOptionPane.showMessageDialog(null, "Selecciona una opciï¿½n");
 			}
 		}
-		
-		//Boton de limpiar, creo
-		
-		//Boton de salir?
+		//Boton de salir
+		if(origen == btn2){
+			System.exit(0);
+		}
 	}
 	//Dibujo base del ahorcado
+	public void terminar(){
+		float calificacion = correctas/preguntas;
+		JOptionPane.showMessageDialog(null, "Tuviste " + correctas +" respuestas correctas y " + errores + " errores\nTuviste " + calificacion + " de calificacion");
+	}
 	public void paint (Graphics ahorca){
 		super.paint(ahorca);
 		ahorca.setColor(Color.BLACK);
