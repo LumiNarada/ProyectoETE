@@ -1,6 +1,6 @@
 /******
 *@Programa: 	Cotizaciones.java
-*Autor:    		Damian "The Magnificent" & Lenin "La Qlonsisima"
+*Autor:    		Damian "The Magnificent" & Lenin "The Gotik"
 *Fecha:    		04/12/2020
 *DescripciÃ³n: 	Si
 *
@@ -17,10 +17,12 @@ import javax.swing.event.*;
 public class Proyecto extends JFrame implements ActionListener {
 	//Objetos heredados de la biblioteca swing
 	private JButton btn1;
-	private JPanel pnlA, pnltitle, pnlPr, pnlRe, pnlBu;
+	private JPanel  pnlTitle, pnlInst, pnlPunt, pnlA, pnlPr, pnlRe, pnlBu;
 	private JLabel lblTitle, lblPregunta;
 	private JRadioButton[] rRespuestas = new JRadioButton[4];
 	private ButtonGroup bgRespuestas = new ButtonGroup();
+	private ImageIcon coyo, unam;
+	private Image conversion, tam;
 	//Arreglo que almacena las preguntas
 	private String[] strPregunta = {
 					
@@ -128,23 +130,35 @@ public class Proyecto extends JFrame implements ActionListener {
 		setLayout(null);
 		
 		// Panel del Título
-		lblTitle = new JLabel ("Las preguntas los Contadores");
+		lblTitle = new JLabel ("Raúl Damian Lenin Pavón.     Adriana Vega");
 		lblTitle.setBounds(270,10,300,30);
 		add(lblTitle);
-		pnltitle = new JPanel();
-		pnltitle.setBounds(10,10,663,30);
-		pnltitle.setBackground(Color.white);
-		add(pnltitle);
+		pnlTitle = new JPanel();
+		pnlTitle.setBounds(10,10,660,60);
+		pnlTitle.setBackground(Color.white);
+		add(pnlTitle);
+		
+		//panel de instrucciones
+		pnlInst = new JPanel();
+		pnlInst.setBounds(10,80,330,40);
+		pnlInst.setBackground(Color.white);
+		add(pnlInst);
+				
+		//panel de puntuación
+		pnlPunt = new JPanel();
+		pnlPunt.setBounds(350,80,320,30);
+		pnlPunt.setBackground(Color.white);
+		add(pnlPunt);
 		
 		// Panel del dibujo del ahorcado
 		pnlA = new JPanel();
-		pnlA.setBounds(10,50,320,300);
+		pnlA.setBounds(350,120,320,260);
 		pnlA.setBackground(Color.white);
 		add(pnlA);
 
 		// Panel de las Preguntas
 		pnlPr = new JPanel();
-		pnlPr.setBounds(340,50,330,60);
+		pnlPr.setBounds(10,130,330,60);
 		pnlPr.setBackground(Color.white);
 		add(pnlPr);
 		//Elaboración de pregunta	
@@ -153,7 +167,7 @@ public class Proyecto extends JFrame implements ActionListener {
 		
 		//Panel para las respuestas
 		pnlRe = new JPanel();
-		pnlRe.setBounds(340,120,330,230);
+		pnlRe.setBounds(10,200,330,230);
 		pnlRe.setBackground(Color.white);
 		add(pnlRe);
 		//Elaboración de las opciones de respuesta
@@ -171,16 +185,32 @@ public class Proyecto extends JFrame implements ActionListener {
 		
 		// Panel y Botón de verificación
 		btn1 = new JButton("Verificar");
-		btn1.setBounds(300,385,100,30);
+		btn1.setBounds(470,393,100,30);
 		btn1.addActionListener(this);
 		add(btn1);
 		pnlBu = new JPanel();
-		pnlBu.setBounds(10,360,663,70);
+		pnlBu.setBounds(350,390,320,37); 
 		pnlBu.setBackground(Color.white);
 		add(pnlBu);
 		
 	}
 	
+	//Dibujo base del ahorcado e inserción de logos
+	public void paint (Graphics ahorca){
+		super.paint(ahorca);
+		ahorca.setColor(Color.BLACK);
+		ahorca.drawRect(410, 380, 70, 10);
+		ahorca.drawLine(440, 180, 440, 380);
+		ahorca.drawLine(410, 180, 590, 180);
+		ahorca.drawLine(440, 220, 470, 180);
+		ahorca.drawLine(590, 180, 590, 210);          
+	    coyo = new ImageIcon("coyo.jpg");
+	    conversion = coyo.getImage();
+	    conversion = conversion.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+	    coyo = new ImageIcon(conversion);
+	    coyo.paintIcon(this,ahorca,50,50);
+	}
+		
 	//Corroboración de la respuesta
 	public static boolean checkPregunta(int intNPregunta, String respuesta, String[] clave){
 		if(respuesta.equals(clave[intNPregunta])){
@@ -227,27 +257,27 @@ public class Proyecto extends JFrame implements ActionListener {
 						ahorca.setColor(Color.BLACK);
 						switch (nVidas) {				        
 				        	case 5:
-				        		ahorca.drawOval(217, 80, 30, 30);
+				        		ahorca.drawOval(217, 60, 30, 30);
 				        	break;
 				        
 				        	case 4:
-				        		ahorca.drawLine(232, 110, 232, 170);
+				        		ahorca.drawLine(232, 90, 232, 150);
 				        	break;
 				        		
 				        	case 3:
-				        		ahorca.drawLine(231, 110, 220, 140);
+				        		ahorca.drawLine(231, 90, 220, 120);
 				        	break;	
 				        
 				        	case 2:
-				        		ahorca.drawLine(233, 110, 244, 140);
+				        		ahorca.drawLine(233, 90, 244, 120);
 				        	break;
 						
 				        	case 1:
-				        		ahorca.drawLine(231, 170, 220, 200);
+				        		ahorca.drawLine(231, 150, 220, 180);
 				        	break;
 						
 				        	case 0:
-				        		ahorca.drawLine(233, 170, 244, 200);
+				        		ahorca.drawLine(233, 150, 244, 180);
 				        	break;
 				        
 				        	default:
@@ -256,7 +286,7 @@ public class Proyecto extends JFrame implements ActionListener {
 						}
 						//Si has tenido 6 errores, pierdes el juego
 						if(errores == vidas){
-							JOptionPane.showMessageDialog(null, "Lo mataste, ya lárgate de aquí");
+							JOptionPane.showMessageDialog(null, "Lo mataste, ya fuchi");
 							System.exit(0);
 						}
 					}
@@ -275,16 +305,7 @@ public class Proyecto extends JFrame implements ActionListener {
 		
 		//Boton de salir?
 	}
-	//Dibujo base del ahorcado
-	public void paint (Graphics ahorca){
-		super.paint(ahorca);
-		ahorca.setColor(Color.BLACK);
-		ahorca.drawRect(70, 330, 70, 10);
-		ahorca.drawLine(100, 130, 100, 330);
-		ahorca.drawLine(70, 130, 250, 130);
-		ahorca.drawLine(100, 170, 130, 130);
-		ahorca.drawLine(250, 130, 250, 160);
-	}
+	
 	//nOsEkEsestA
 	public static String[] randomize(String[] arreglo){
 		for(int i = 0; i < arreglo.length; i++){
