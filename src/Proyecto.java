@@ -18,7 +18,7 @@ public class Proyecto extends JFrame implements ActionListener {
 	//Objetos heredados de la biblioteca swing
 	private JButton btn1;
 	private JPanel  pnlTitle, pnlInst, pnlPunt, pnlA, pnlPr, pnlRe, pnlBu;
-	private JLabel lblTitle, lblPregunta;
+	private JLabel lblTitle, lblPregunta, lblInst;
 	private JRadioButton[] rRespuestas = new JRadioButton[4];
 	private ButtonGroup bgRespuestas = new ButtonGroup();
 	private ImageIcon coyo, unam;
@@ -26,78 +26,78 @@ public class Proyecto extends JFrame implements ActionListener {
 	//Arreglo que almacena las preguntas
 	private String[] strPregunta = {
 					
-					"<html> Pregunta 1 <br> ¿Qué es un Sistema Operativo? <html/>",
-					"<html> Pregunta 2 <br> ",
-					"<html> Pregunta 3 <br>",
-					"<html> Pregunta 4 <br>",
-					"<html> Pregunta 5 <br>",
-					"<html> Pregunta 6 <br>",
-					"<html> Pregunta 7 <br>",
-					"<html> Pregunta 8 <br>",
-					"<html> Pregunta 9 <br>",
-					"<html> Pregunta 10 <br>"
+					"<html> Pregunta 1 <br> ¿Qué es un Sistema Operativo? </html>",
+					"<html> Pregunta 2 <br> ¿Cuál es la principal funcion de un Sistema Operativo?</html>",
+					"<html> Pregunta 3 <br> ¿Quién creó el primer Sistema Operativo y en qué año?</html>",
+					"<html> Pregunta 4 <br> ¿Cuál es el propósito de una interfaz?</html>",
+					"<html> Pregunta 5 <br> ¿Cuándo comenzaron a producirse interfaces gráficas <br>  para personas sin conocimiento en programación?</html>",
+					"<html> Pregunta 6 <br> ¿Cómo se clasifican las interfaces gráficas que <br> permiten al usuario utilizar todos los recursos?</html>",
+					"<html> Pregunta 7 <br> ¿Qué característica principal tiene el <br> software llamado Kernel </html>",
+					"<html> Pregunta 8 <br> ¿Qué es un archivo? </html>",
+					"<html> Pregunta 9 <br> ¿Cuáles son las tres principales formas de <br> clasificar un sistema de archivos? </html>",
+					"<html> Pregunta 10 <br> ¿Cuáles de los siguientes ejemplos son <br> interfaces gráficas?</html>"
 	};
 	//Arreglo que almacena las opciones de respuesta
 	private String[][] strRespuestas = {
 					{
-									"<html> Programa que automatiza procesos <br> básicos de un dispositivo </html>",
-									"<html> Programa que administra solo el <br> software de un dispositivo </html>",
-									"<html> Programa que administra solo el <br> hardware de un dispositivo </html>",
-									"<html> Programa que esá diseñado solo <br> para el manejo de telefonos </html>"
+						"<html> Programa que automatiza procesos								<br> básicos de un dispositivo </html>",
+						"<html> Programa que administra solo el &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		<br> software de un dispositivo </html>",
+						"<html> Programa que administra solo el &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		<br> hardware de un dispositivo </html>",
+						"<html> Programa que esá diseñado solo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<br> para el manejo de celulares </html>"
 					},
 					{
-									"Respuesta 1",
-									"Respuesta 5",
-									"Respuesta 3",
-									"Respuesta 4"
+						"<html> Administrar recursos, archivos y tareas 		<br> tanto del hadware como del software </html>",
+						"<html> Brindar una experiencia agradable al &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			<br>  usuario mediante un diseño simple </html>",
+						"<html> Almacenar y organizar la base de datos &nbsp;&nbsp;&nbsp;		<br> de un dispositivo eficientemente </html>",
+						"<html> Mantener  los datos del usuario seguros &nbsp;		<br> de ataques de malware </html>"
 					},
 					{
-									"Respuesta 1",
-									"Respuesta 2",
-									"Respuesta 3",
-									"Respuesta 4"
+						"<html> International Business Machines &nbsp;	<br> en 1956 </html>",
+						"<html> Netscape Communications Corporation	&nbsp; <br> en 1996 </html>",
+						"<html> Hewlett-Packard Company &nbsp;	<br> en 1939 </html>",
+						"<html> GlaxoSmithKline&nbsp;	<br> en el 2000 </html>"
 					},
 					{
-									"Respuesta 1",
-									"Respuesta 2",
-									"Respuesta 3",
-									"Respuesta 4"
+						"<html> Comunicar al usuario con el software &nbsp;	<br> y al software con el hadware (y el usuario) </html>",
+						"<html> Organizar estructuras de datos para su &nbsp;	<br> óptima utilización </html>",
+						"<html> Llevar a cabo programas realizados &nbsp;	<br> con un lenguaje orientado a objetos </html>",
+						"<html> Facilitar la creación de nuevos códigos &nbsp;	<br> del usuario </html>"
 					},
 					{
-									"Respuesta 1",
-									"Respuesta 2",
-									"Respuesta 3",
-									"Respuesta 4"
+						"<html> Entre 1970 y 1980</html>",
+						"<html> Entre 1990 y 2000</html>",
+						"<html> Entre 1950 y 1960</html>",
+						"<html> Entre 1930 y 1940</html>"
 					},
 					{
-									"Respuesta 1",
-									"Respuesta 2",
-									"Respuesta 3",
-									"Respuesta 4"
+						"<html> Distribuidos &nbsp;</html>",
+						"<html> Centralizados &nbsp;</html>",
+						"<html> Multitareas  &nbsp;</html>",
+						"<html> Jerárquicos &nbsp;</html>"
 					},
 					{
-									"Respuesta 1",
-									"Respuesta 2",
-									"Respuesta 3",
-									"Respuesta 4"
+						"<html> Núcleo del sistema operativo, &nbsp; <br> se ejecuta en modo privilegiado </html>",
+						"<html> Permite al sistema operativo &nbsp;	<br> interactuar con los perifericos </html>",
+						"<html> Hace posible que varios usuarios &nbsp;	<br> ejecuten programas a la vez </html>",
+						"<html> Mantiene protegido al sistema de cualquier &nbsp;	<br>  maleware que pueda presentar </html>"
 					},
 					{
-									"Respuesta 1",
-									"Respuesta 2",
-									"Respuesta 3",
-									"Respuesta 4"
+						"<html> Conjunto de bytes o datos ordenados &nbsp;	<br> almacenados en un disco duro </html>",
+						"<html> Grupo de información  que se &nbsp;	<br>  almacena en el Kernel </html>",
+						"<html> Una base de datos comprimida &nbsp;	<br>  al máximo </html>",
+						"<html> Aglomeración de datos que viajan desde &nbsp;	<br> el driver a los sistemas perifericos </html>"
 					},
 					{
-									"Respuesta 1",
-									"Respuesta 2",
-									"Respuesta 3",
-									"Respuesta 4"
+						"<html> De disco, de red y de propósito especial</html>",
+						"<html> De organización, de recopilación y de distribución</html>",
+						"<html> De periferia, de centralización y de dualidad</html>",
+						"<html> De usuario, de código y de intercomunicación</html>"
 					},
 					{
-									"Respuesta 1",
-									"Respuesta 2",
-									"Respuesta 3",
-									"Respuesta 4"
+						"<html> Android, Linux, Windows</html>",
+						"<html> Java, Python, C++</html>",
+						"<html> HTML, CSS, XML</html>",
+						"<html> Pay De Queso</html>"
 					}
 	};
 	//Arreglo que almacena las respuestas correctas
@@ -130,8 +130,8 @@ public class Proyecto extends JFrame implements ActionListener {
 		setLayout(null);
 		
 		// Panel del Título
-		lblTitle = new JLabel ("Raúl Damian Lenin Pavón.     Adriana Vega");
-		lblTitle.setBounds(270,10,300,30);
+		lblTitle = new JLabel ("<html>Elaborado por: <br> Raúl J. Damian Magaña <br> Lenin A. Pavón Snoopy <html/>");
+		lblTitle.setBounds(130,7,170,67);
 		add(lblTitle);
 		pnlTitle = new JPanel();
 		pnlTitle.setBounds(10,10,660,60);
@@ -139,11 +139,15 @@ public class Proyecto extends JFrame implements ActionListener {
 		add(pnlTitle);
 		
 		//panel de instrucciones
+		lblInst = new JLabel("Instrucciones: De tin marin de do pingue, cucaramacara");
+		lblInst.setBounds(30,80,300,30);
+		add(lblInst);
 		pnlInst = new JPanel();
 		pnlInst.setBounds(10,80,330,40);
 		pnlInst.setBackground(Color.white);
 		add(pnlInst);
-				
+		
+		
 		//panel de puntuación
 		pnlPunt = new JPanel();
 		pnlPunt.setBounds(350,80,320,30);
@@ -206,9 +210,16 @@ public class Proyecto extends JFrame implements ActionListener {
 		ahorca.drawLine(590, 180, 590, 210);          
 	    coyo = new ImageIcon("coyo.jpg");
 	    conversion = coyo.getImage();
-	    conversion = conversion.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+	    conversion = conversion.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
 	    coyo = new ImageIcon(conversion);
-	    coyo.paintIcon(this,ahorca,50,50);
+	    coyo.paintIcon(this,ahorca,18,41);
+	    unam = new ImageIcon("unam.png");
+	    conversion = unam.getImage();
+	    conversion = conversion.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+	    unam = new ImageIcon(conversion);
+	    unam.paintIcon(this,ahorca,620,41);
+	    
+	    //ahorca.drawLine(70, 230, 70, 450);
 	}
 		
 	//Corroboración de la respuesta
@@ -239,7 +250,7 @@ public class Proyecto extends JFrame implements ActionListener {
 						correctas++;
 						if(correctas == preguntas){
 							JOptionPane.showMessageDialog(null, "Ganaste uwuwuwuwuwuwu");
-							System.exit(1);
+							//System.exit(1);
 						}
 						contador++;
 						lblPregunta.setText(strPregunta[contador]);
@@ -287,7 +298,7 @@ public class Proyecto extends JFrame implements ActionListener {
 						//Si has tenido 6 errores, pierdes el juego
 						if(errores == vidas){
 							JOptionPane.showMessageDialog(null, "Lo mataste, ya fuchi");
-							System.exit(0);
+							//System.exit(0);
 						}
 					}
 					int nPregunta = contador + 1;
