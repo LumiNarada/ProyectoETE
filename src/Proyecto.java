@@ -113,7 +113,7 @@ public class Proyecto extends JFrame implements ActionListener {
 					strRespuestas[8][0],
 					strRespuestas[9][0],
 	};
-	private int contador =  0, correctas = 0, errores = 0, preguntas = strPregunta.length, vidas = 6;
+	private int contador =  0, correctas = 0, errores = 0, preguntas = 10, vidas = 6;
 	
 	//Creaci�n de la ventana
 	public static void main(String[] ar) {
@@ -259,8 +259,8 @@ public class Proyecto extends JFrame implements ActionListener {
 					if(respuesta){
 						correctas++;
 						if(correctas == preguntas){
-							JOptionPane.showMessageDialog(null, "Ganaste uwuwuwuwuwuwu");
-							//System.exit(1);
+							terminar();
+							System.exit(0);
 						}
 						contador++;
 						lblPregunta.setText(strPregunta[contador]);
@@ -307,8 +307,8 @@ public class Proyecto extends JFrame implements ActionListener {
 						}
 						//Si has tenido 6 errores, pierdes el juego
 						if(errores == vidas){
-							JOptionPane.showMessageDialog(null, "Lo mataste, ya fuchi");
-							//System.exit(0);
+							terminar();
+							System.exit(0);
 						}
 					}
 					int nPregunta = contador + 1;
@@ -328,8 +328,13 @@ public class Proyecto extends JFrame implements ActionListener {
 	}
 	//Dibujo base del ahorcado
 	public void terminar(){
-		float calificacion = correctas/preguntas;
+		int calificacion = (correctas*10/preguntas);
 		JOptionPane.showMessageDialog(null, "Tuviste " + correctas +" respuestas correctas y " + errores + " errores\nTuviste " + calificacion + " de calificacion");
+		if(calificacion >= 6){
+			JOptionPane.showMessageDialog(null, "Aprobaste el cuestionario, el programa terminará ahora");
+		}else{
+			JOptionPane.showMessageDialog(null, "Reprobaste el cuestionario, reinicia el programa");
+		}
 	}
 	//nOsEkEsestA
 	public static String[] randomize(String[] arreglo){
