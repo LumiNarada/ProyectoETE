@@ -2,14 +2,15 @@
 *@Programa: 	Cotizaciones.java
 *Autor:    		Damian "The Magnificent" & Lenin "The Gotik"
 *Fecha:    		04/12/2020
-*Descripción: 	Si
+*Descripción: 	Cuestionario de 10 preguntas con 4 opciones en orden aleatorio que
+ * al finalizar regresa calificación
 *
 *******/
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.Math; // Para obtener n�meros aleatorios
+import java.lang.Math; // Para obtener aleatorizar opciones
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -23,31 +24,33 @@ public class Proyecto extends JFrame implements ActionListener {
 	private ButtonGroup bgRespuestas = new ButtonGroup();
 	private ImageIcon coyo, unam;
 	private Image conversion, tam;
+	// Caracteres especiales
+	private String ac = "&aacute;", ec = "&eacute;", ic = "&iacute;", oc = "&oacute;", uc = "&uacute;", ip = "&iquest;", eine = "&ntilde;";
 	//Arreglo que almacena las preguntas
 	private String[] strPregunta = {
 					
-					"<html> Pregunta 1 <br> �Qu� es un Sistema Operativo? </html>",
-					"<html> Pregunta 2 <br> �Cu�l es la principal funcion de <br>un Sistema Operativo?</html>",
-					"<html> Pregunta 3 <br> �Qui�n cre� el primer Sistema Operativo <br>y en qu� a�o?</html>",
-					"<html> Pregunta 4 <br> �Cu�l es el prop�sito de una interfaz?</html>",
-					"<html> Pregunta 5 <br> �Cu�ndo comenzaron a producirse interfaces <br> gr�ficas para público general?</html>",
-					"<html> Pregunta 6 <br> �C�mo se clasifican las interfaces gr�ficas que <br> permiten al usuario utilizar todos los recursos?</html>",
-					"<html> Pregunta 7 <br> �Qu� caracter�stica principal tiene el <br> software llamado Kernel </html>",
-					"<html> Pregunta 8 <br> �Qu� es un archivo? </html>",
-					"<html> Pregunta 9 <br> �Cu�les son las tres principales formas de <br> clasificar un sistema de archivos? </html>",
-					"<html> Pregunta 10 <br> �Cu�les de los siguientes ejemplos son <br> interfaces gr�ficas?</html>"
+					"<html> Pregunta 1 <br> " + ip + "Qu" + ec + " es un Sistema Operativo? </html>",
+					"<html> Pregunta 2 <br> " + ip + "Cu" + ac + "l es la principal funcion de <br>un Sistema Operativo?</html>",
+					"<html> Pregunta 3 <br> " + ip + "Qui" + ec + "n cre" + oc +" el primer Sistema Operativo <br>y en qu" + ec +" a" + eine + "o?</html>",
+					"<html> Pregunta 4 <br> " + ip + "Cu" + ac + "l es el prop" + oc +"sito de una interfaz?</html>",
+					"<html> Pregunta 5 <br> " + ip + "Cu" + ac + "ndo comenzaron a producirse interfaces <br> gr" + ac + "ficas para público general?</html>",
+					"<html> Pregunta 6 <br> " + ip + "C" + oc +"mo se clasifican las interfaces gr" + ac +"ficas que <br> permiten al usuario utilizar todos los recursos?</html>",
+					"<html> Pregunta 7 <br> " + ip + "Qu" + ac + " caracter" + ic + "stica principal tiene el <br> software llamado Kernel </html>",
+					"<html> Pregunta 8 <br> " + ip + "Qu" + ec + " es un archivo? </html>",
+					"<html> Pregunta 9 <br> " + ip + "Cu" + ac + "les son las tres principales formas de <br> clasificar un sistema de archivos? </html>",
+					"<html> Pregunta 10 <br> " + ip + "Cu" + ac + "les de los siguientes ejemplos son <br> interfaces gr" + ac + "ficas?</html>"
 	};
 	//Arreglo que almacena las opciones de respuesta
 	private String[][] strRespuestas = {
 					{
-						"<html> Programa que automatiza procesos								<br> b�sicos de un dispositivo </html>",
+						"<html> Programa que automatiza procesos								<br> b" + ac + "sicos de un dispositivo </html>",
 						"<html> Programa que administra solo el &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		<br> software de un dispositivo </html>",
 						"<html> Programa que administra solo el &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		<br> hardware de un dispositivo </html>",
-						"<html> Programa que es� dise�ado solo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<br> para el manejo de celulares </html>"
+						"<html> Programa que es dise" + eine + "ado solo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<br> para el manejo de celulares </html>"
 					},
 					{
 						"<html> Administrar recursos, archivos y tareas 		<br> tanto del hadware como del software </html>",
-						"<html> Brindar una experiencia agradable al &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			<br>  usuario mediante un dise�o simple </html>",
+						"<html> Brindar una experiencia agradable al &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			<br>  usuario mediante un dise" + eine +"o simple </html>",
 						"<html> Almacenar y organizar la base de datos &nbsp;&nbsp;&nbsp;		<br> de un dispositivo eficientemente </html>",
 						"<html> Mantener  los datos del usuario seguros &nbsp;		<br> de ataques de malware </html>"
 					},
@@ -59,9 +62,9 @@ public class Proyecto extends JFrame implements ActionListener {
 					},
 					{
 						"<html> Comunicar al usuario con el software &nbsp;	<br> y al software con el hadware (y el usuario) </html>",
-						"<html> Organizar estructuras de datos para su &nbsp;	<br> �ptima utilizaci�n </html>",
+						"<html> Organizar estructuras de datos para su &nbsp;	<br> " + oc +"ptima utilizaci" + oc +"n </html>",
 						"<html> Llevar a cabo programas realizados &nbsp;	<br> con un lenguaje orientado a objetos </html>",
-						"<html> Facilitar la creaci�n de nuevos c�digos &nbsp;	<br> del usuario </html>"
+						"<html> Facilitar la creaci" + oc +"n de nuevos c" + oc +"digos &nbsp;	<br> del usuario </html>"
 					},
 					{
 						"<html> Entre 1970 y 1980</html>",
@@ -73,25 +76,25 @@ public class Proyecto extends JFrame implements ActionListener {
 						"<html> Distribuidos &nbsp;</html>",
 						"<html> Centralizados &nbsp;</html>",
 						"<html> Multitareas  &nbsp;</html>",
-						"<html> Jer�rquicos &nbsp;</html>"
+						"<html> Jer" + ac + "rquicos &nbsp;</html>"
 					},
 					{
-						"<html> N�cleo del sistema operativo, &nbsp; <br> se ejecuta en modo privilegiado </html>",
+						"<html> N" + uc +"cleo del sistema operativo, &nbsp; <br> se ejecuta en modo privilegiado </html>",
 						"<html> Permite al sistema operativo &nbsp;	<br> interactuar con los perifericos </html>",
 						"<html> Hace posible que varios usuarios &nbsp;	<br> ejecuten programas a la vez </html>",
 						"<html> Mantiene protegido al sistema de cualquier &nbsp;	<br>  maleware que pueda presentar </html>"
 					},
 					{
 						"<html> Conjunto de bytes o datos ordenados &nbsp;	<br> almacenados en un disco duro </html>",
-						"<html> Grupo de informaci�n  que se &nbsp;	<br>  almacena en el Kernel </html>",
-						"<html> Una base de datos comprimida &nbsp;	<br>  al m�ximo </html>",
-						"<html> Aglomeraci�n de datos que viajan desde &nbsp;	<br> el driver a los sistemas perifericos </html>"
+						"<html> Grupo de informaci" + oc +"n  que se &nbsp;	<br>  almacena en el Kernel </html>",
+						"<html> Una base de datos comprimida &nbsp;	<br>  al m" + ac + "ximo </html>",
+						"<html> Aglomeraci" + oc + "n de datos que viajan desde &nbsp;	<br> el driver a los sistemas perifericos </html>"
 					},
 					{
-						"<html> De disco, de red y de prop�sito especial</html>",
-						"<html> De organizaci�n, de recopilaci�n y <br> de distribuci�n</html>",
-						"<html> De periferia, de centralizaci�n y de <br> dualidad</html>",
-						"<html> De usuario, de c�digo y de <br> intercomunicaci�n</html>"
+						"<html> De disco, de red y de prop" + oc + "sito especial</html>",
+						"<html> De organizaci" + oc + "n, de recopilaci" + oc + "n y <br> de distribuci" + oc + "n</html>",
+						"<html> De periferia, de centralizaci" + oc + "n y de <br> dualidad</html>",
+						"<html> De usuario, de c" + oc + "digo y de <br> intercomunicaci" + oc + "n</html>"
 					},
 					{
 						"<html> Android, Linux, Windows</html>",
@@ -113,9 +116,10 @@ public class Proyecto extends JFrame implements ActionListener {
 					strRespuestas[8][0],
 					strRespuestas[9][0],
 	};
+	// Contadores
 	private int contador =  0, correctas = 0, errores = 0, preguntas = 10, vidas = 6;
 	
-	//Creaci�n de la ventana
+	//Creacion de la ventana
 	public static void main(String[] ar) {
 		Proyecto juego = new Proyecto();
 		juego.setSize(700, 500);
@@ -124,13 +128,13 @@ public class Proyecto extends JFrame implements ActionListener {
 		juego.setVisible(true);
 	}
 
-	//Creaci�n de los elementos de la ventana
+	//Creacion de los elementos de la ventana
 	public Proyecto() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
 		
-		// Panel del T�tulo
-		lblTitle = new JLabel ("<html>Elaborado por: <br> Ra�l J. Damian Maga�a <br> Lenin A. Pav�n Alvarez <html/>");
+		// Panel del Titulo
+		lblTitle = new JLabel ("<html>Elaborado por: <br> Ra" + uc +"l J. Damian Maga" + eine +"a <br> Lenin Pav" + oc +"n Alvarez <html/>");
 		lblTitle.setBounds(130,7,170,67);
 		add(lblTitle);
 		pnlTitle = new JPanel();
@@ -148,7 +152,7 @@ public class Proyecto extends JFrame implements ActionListener {
 		add(pnlInst);
 		
 		
-		//panel de puntuaci�n
+		//panel de puntuacion
 		pnlPunt = new JPanel();
 		pnlPunt.setBounds(350,80,320,30);
 		pnlPunt.setBackground(Color.white);
@@ -165,7 +169,7 @@ public class Proyecto extends JFrame implements ActionListener {
 		pnlPr.setBounds(10,130,330,60);
 		pnlPr.setBackground(Color.white);
 		add(pnlPr);
-		//Elaboraci�n de pregunta	
+		//Elaboracion de pregunta
 		lblPregunta = new JLabel(strPregunta[contador]);
 		pnlPr.add(lblPregunta);  
 		
@@ -174,7 +178,7 @@ public class Proyecto extends JFrame implements ActionListener {
 		pnlRe.setBounds(10,200,330,230);
 		pnlRe.setBackground(Color.white);
 		add(pnlRe);
-		//Elaboraci�n de las opciones de respuesta
+		//Elaboracion de las opciones de respuesta
 		strRespuestas[contador] = randomize(strRespuestas[contador]);
 		for (int i = 0; i < strRespuestas[contador].length; i++){
 			rRespuestas[i] = new JRadioButton(strRespuestas[contador][i]);
@@ -187,7 +191,7 @@ public class Proyecto extends JFrame implements ActionListener {
 			pnlRe.add(pnlRespuesta[i]);
 		}
 		
-		// Panel y Bot�n de verificaci�n
+		// Panel y Boton de verificacion
 		btn1 = new JButton();
 		btn1.setIcon(new ImageIcon("verificar.gif"));
 		btn1.setBounds(430,393,49,35);
@@ -206,7 +210,7 @@ public class Proyecto extends JFrame implements ActionListener {
 
 	}
 	
-	//Dibujo base del ahorcado e inserci�n de logos
+	//Dibujo base del ahorcado e insercion de logos
 	public void paint (Graphics ahorca){
 		super.paint(ahorca);
 		ahorca.setColor(Color.BLACK);
@@ -229,7 +233,7 @@ public class Proyecto extends JFrame implements ActionListener {
 	    //ahorca.drawLine(70, 230, 70, 450);
 	}
 		
-	//Corroboraci�n de la respuesta
+	//Corroboracion de la respuesta
 	public static boolean checkPregunta(int intNPregunta, String respuesta, String[] clave){
 		//JOptionPane.showMessageDialog(null, respuesta);
 		//JOptionPane.showMessageDialog(null, clave);
@@ -237,18 +241,18 @@ public class Proyecto extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Respuesta correcta");
 			return true;
 		}
-		JOptionPane.showMessageDialog(null, "Respuesta errónea");
+		JOptionPane.showMessageDialog(null, "<html>Respuesta err&oacute;nea</html>");
 		return false;
 	}
 	
-	//Acci�n realizada al presionar un bot�n
+	//Accion realizada al presionar un boton
 	public void actionPerformed(ActionEvent e) {
 		//Cuando se presiona "Verifica"
 		Object origen = e.getSource();
 		if (origen == btn1) {
 			int intRespuesta;
 			boolean respondido = false;
-			// Revisa que radio se seleccion�
+			// Revisa que radio se seleccion
 			for (int i = 0; i < rRespuestas.length; i++){
 				if(rRespuestas[i].isSelected()){
 					respondido = true;
@@ -318,7 +322,7 @@ public class Proyecto extends JFrame implements ActionListener {
 			}
 			//Si el boton de verificar se ha presionado sin seleccionar una respuesta
 			if(!respondido){
-				JOptionPane.showMessageDialog(null, "Selecciona una opci�n");
+				JOptionPane.showMessageDialog(null, "<html>Selecciona una opci" + oc + "n</html>");
 			}
 		}
 		//Boton de salir
@@ -329,14 +333,14 @@ public class Proyecto extends JFrame implements ActionListener {
 	//Dibujo base del ahorcado
 	public void terminar(){
 		int calificacion = (correctas*10/preguntas);
-		JOptionPane.showMessageDialog(null, "Tuviste " + correctas +" respuestas correctas y " + errores + " errores\nTuviste " + calificacion + " de calificacion");
+		JOptionPane.showMessageDialog(null, "<html>Tuviste " + correctas +" respuestas correctas y " + errores + " errores\nTuviste " + calificacion + " de calificaci" + oc + "n</html>");
 		if(calificacion >= 6){
-			JOptionPane.showMessageDialog(null, "Aprobaste el cuestionario, el programa terminará ahora");
+			JOptionPane.showMessageDialog(null, "<html>Aprobaste el cuestionario, el programa terminar" + ac +" ahora</html>");
 		}else{
 			JOptionPane.showMessageDialog(null, "Reprobaste el cuestionario, reinicia el programa");
 		}
 	}
-	//nOsEkEsestA
+	//Aleatorizacion del orde de las opciones
 	public static String[] randomize(String[] arreglo){
 		for(int i = 0; i < arreglo.length; i++){
 			int maximo = arreglo.length;
