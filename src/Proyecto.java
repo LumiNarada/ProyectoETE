@@ -188,12 +188,14 @@ public class Proyecto extends JFrame implements ActionListener {
 		}
 		
 		// Panel y Bot�n de verificaci�n
-		btn1 = new JButton("Verificar");
-		btn1.setBounds(470,393,100,30);
+		btn1 = new JButton();
+		btn1.setIcon(new ImageIcon("verificar.gif"));
+		btn1.setBounds(430,393,49,35);
 		btn1.addActionListener(this);
 		add(btn1);
-		btn2 = new JButton("Salida");
-		btn2.setBounds(500,385,100,30);
+		btn2 = new JButton();
+		btn2.setIcon(new ImageIcon("entrar.gif"));
+		btn2.setBounds(550,393,34,33);
 		btn2.addActionListener(this);
 		add(btn2);
 		pnlBu = new JPanel();
