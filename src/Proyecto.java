@@ -17,8 +17,8 @@ import javax.swing.event.*;
 
 public class Proyecto extends JFrame implements ActionListener {
 	//Objetos heredados de la biblioteca swing
-	private JLabel lblTitle, lblPregunta, lblInst;
-	private JPanel  pnlTitle, pnlInst, pnlPunt, pnlA, pnlPr, pnlRe, pnlBu;
+	private JLabel lblNames, lblPr, lblTitle, lblPregunta, lblInst, lblPunt, lblVida;
+	private JPanel  pnlTitle, pnlInst, pnlPunt, pnlA, pnlPr, pnlRe, pnlBu, pnl;
 	private JButton btn1, btn2;
 	private JRadioButton[] rRespuestas = new JRadioButton[4];
 	private ButtonGroup bgRespuestas = new ButtonGroup();
@@ -33,7 +33,7 @@ public class Proyecto extends JFrame implements ActionListener {
 					"<html> Pregunta 2 <br> " + ip + "Cu" + ac + "l es la principal funcion de <br>un Sistema Operativo?</html>",
 					"<html> Pregunta 3 <br> " + ip + "Qui" + ec + "n cre" + oc +" el primer Sistema Operativo <br>y en qu" + ec +" a" + eine + "o?</html>",
 					"<html> Pregunta 4 <br> " + ip + "Cu" + ac + "l es el prop" + oc +"sito de una interfaz?</html>",
-					"<html> Pregunta 5 <br> " + ip + "Cu" + ac + "ndo comenzaron a producirse interfaces <br> gr" + ac + "ficas para pÃºblico general?</html>",
+					"<html> Pregunta 5 <br> " + ip + "Cu" + ac + "ndo comenzaron a producirse interfaces <br> gr" + ac + "ficas para p"+ uc +"blico general?</html>",
 					"<html> Pregunta 6 <br> " + ip + "C" + oc +"mo se clasifican las interfaces gr" + ac +"ficas que <br> permiten al usuario utilizar todos los recursos?</html>",
 					"<html> Pregunta 7 <br> " + ip + "Qu" + ac + " caracter" + ic + "stica principal tiene el <br> software llamado Kernel </html>",
 					"<html> Pregunta 8 <br> " + ip + "Qu" + ec + " es un archivo? </html>",
@@ -43,64 +43,64 @@ public class Proyecto extends JFrame implements ActionListener {
 	//Arreglo que almacena las opciones de respuesta
 	private String[][] strRespuestas = {
 					{
-						"<html> Programa que automatiza procesos								<br> b" + ac + "sicos de un dispositivo </html>",
-						"<html> Programa que administra solo el &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		<br> software de un dispositivo </html>",
-						"<html> Programa que administra solo el &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		<br> hardware de un dispositivo </html>",
-						"<html> Programa que es dise" + eine + "ado solo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<br> para el manejo de celulares </html>"
+						"<html> Programa que automatiza procesos													<br> b" + ac + "sicos de un dispositivo </html>",
+						"<html> Programa que administra solo el 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<br> software de un dispositivo </html>",
+						"<html> Programa que administra solo el 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<br> hardware de un dispositivo </html>",
+						"<html> Programa que es dise" + eine + "ado solo 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			<br> para el manejo de celulares </html>"
 					},
 					{
-						"<html> Administrar recursos, archivos y tareas 		<br> tanto del hadware como del software </html>",
-						"<html> Brindar una experiencia agradable al &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			<br>  usuario mediante un dise" + eine +"o simple </html>",
-						"<html> Almacenar y organizar la base de datos &nbsp;&nbsp;&nbsp;		<br> de un dispositivo eficientemente </html>",
-						"<html> Mantener  los datos del usuario seguros &nbsp;		<br> de ataques de malware </html>"
+						"<html> Administrar recursos, archivos y tareas 												<br> tanto del hadware como del software </html>",
+						"<html> Brindar una experiencia agradable al 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<br>  usuario mediante un dise" + eine +"o simple </html>",
+						"<html> Almacenar y organizar la base de datos 			&nbsp;									<br> de un dispositivo eficientemente </html>",
+						"<html> Mantener  los datos del usuario seguros			&nbsp;									<br> de ataques de malware </html>"
 					},
 					{
-						"<html> International Business Machines &nbsp;	<br> en 1956 </html>",
-						"<html> Netscape Communications Corporation	&nbsp; <br> en 1996 </html>",
-						"<html> Hewlett-Packard Company &nbsp;	<br> en 1939 </html>",
-						"<html> GlaxoSmithKline&nbsp;	<br> en el 2000 </html>"
+						"<html> International Business Machines &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;																																	<br> en 1956 </html>",
+						"<html> Netscape Communications Corporation	&nbsp;&nbsp;&nbsp; 																																																		<br> en 1996 </html>",
+						"<html> Hewlett-Packard Company &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;																		<br> en 1939 </html>",
+						"<html> Glaxo Smith Kline en &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<br> el 2000 </html>"
 					},
 					{
-						"<html> Comunicar al usuario con el software &nbsp;	<br> y al software con el hadware (y el usuario) </html>",
-						"<html> Organizar estructuras de datos para su &nbsp;	<br> " + oc +"ptima utilizaci" + oc +"n </html>",
-						"<html> Llevar a cabo programas realizados &nbsp;	<br> con un lenguaje orientado a objetos </html>",
-						"<html> Facilitar la creaci" + oc +"n de nuevos c" + oc +"digos &nbsp;	<br> del usuario </html>"
+						"<html> Comunicar al usuario con el software &nbsp;																<br> y al software con el hadware (y el usuario) </html>",
+						"<html> Organizar estructuras de datos para su &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;									<br> " + oc +"ptima utilizaci" + oc +"n </html>",
+						"<html> Llevar a cabo programas realizados &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<br> con un lenguaje orientado a objetos </html>",
+						"<html> Facilitar la creaci" + oc +"n de nuevos c" + oc +"digos &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			<br> del usuario </html>"
 					},
 					{
-						"<html> Entre 1970 y 1980</html>",
-						"<html> Entre 1990 y 2000</html>",
-						"<html> Entre 1950 y 1960</html>",
-						"<html> Entre 1930 y 1940</html>"
+						"<html> Entre 1970 y 1980 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</html>",
+						"<html> Entre 1990 y 2000 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</html>",
+						"<html> Entre 1950 y 1960 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</html>",
+						"<html> Entre 1930 y 1940 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</html>"
 					},
 					{
-						"<html> Distribuidos &nbsp;</html>",
-						"<html> Centralizados &nbsp;</html>",
-						"<html> Multitareas  &nbsp;</html>",
-						"<html> Jer" + ac + "rquicos &nbsp;</html>"
+						"<html> Distribuidos &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</html>",
+						"<html> Centralizados &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</html>",
+						"<html> Multitareas  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</html>",
+						"<html> Jer" + ac + "rquicos &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</html>"
 					},
 					{
-						"<html> N" + uc +"cleo del sistema operativo, &nbsp; <br> se ejecuta en modo privilegiado </html>",
-						"<html> Permite al sistema operativo &nbsp;	<br> interactuar con los perifericos </html>",
-						"<html> Hace posible que varios usuarios &nbsp;	<br> ejecuten programas a la vez </html>",
-						"<html> Mantiene protegido al sistema de cualquier &nbsp;	<br>  maleware que pueda presentar </html>"
+						"<html> N" + uc +"cleo del sistema operativo,			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<br> se ejecuta en modo privilegiado </html>",
+						"<html> Permite al sistema operativo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			<br> interactuar con los perifericos </html>",
+						"<html> Hace posible que varios usuarios &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;															<br> ejecuten programas a la vez </html>",
+						"<html> Mantiene protegido al sistema de cualquier <br>  maleware que pueda presentar </html>"
 					},
 					{
-						"<html> Conjunto de bytes o datos ordenados &nbsp;	<br> almacenados en un disco duro </html>",
-						"<html> Grupo de informaci" + oc +"n  que se &nbsp;	<br>  almacena en el Kernel </html>",
-						"<html> Una base de datos comprimida &nbsp;	<br>  al m" + ac + "ximo </html>",
-						"<html> Aglomeraci" + oc + "n de datos que viajan desde &nbsp;	<br> el driver a los sistemas perifericos </html>"
+						"<html> Conjunto de bytes o datos ordenados 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 																							<br> almacenados en un disco duro </html>",
+						"<html> Grupo de informaci" + oc +"n  que se 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<br>  almacena en el Kernel </html>",
+						"<html> Una base de datos comprimida al 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 														<br> m" + ac + "ximo </html>",
+						"<html> Aglomeraci" + oc + "n de datos que viajan desde <br> el driver a los sistemas perifericos </html>"
 					},
 					{
-						"<html> De disco, de red y de prop" + oc + "sito especial</html>",
-						"<html> De organizaci" + oc + "n, de recopilaci" + oc + "n y <br> de distribuci" + oc + "n</html>",
-						"<html> De periferia, de centralizaci" + oc + "n y de <br> dualidad</html>",
-						"<html> De usuario, de c" + oc + "digo y de <br> intercomunicaci" + oc + "n</html>"
+						"<html> De disco, de red y de prop" + oc + "sito especial 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</html>",
+						"<html> De uso compartido, personales y p" + uc +"blicos 				&nbsp;&nbsp;&nbsp;&nbsp;</html>",
+						"<html> De periferia, de centralizaci" + oc + "n y de dualidad 			&nbsp;</html>",
+						"<html> De usuario, de c" + oc + "digo y de intercomunicaci" + oc + "n </html>"
 					},
 					{
-						"<html> Android, Linux, Windows</html>",
-						"<html> Java, Python, C++</html>",
-						"<html> HTML, CSS, XML</html>",
-						"<html> Pay De Queso</html>"
+						"<html> Android, Linux, Windows </html>",
+						"<html> Java, Python, C++ 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </html>",
+						"<html> HTML, CSS, XML 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</html>",
+						"<html> Pay De Queso 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</html>"
 					}
 	};
 	//Arreglo que almacena las respuestas correctas
@@ -134,40 +134,54 @@ public class Proyecto extends JFrame implements ActionListener {
 		setLayout(null);
 		
 		// Panel del Titulo
-		lblTitle = new JLabel ("<html>Elaborado por: <br> Ra" + uc +"l J. Damian Maga" + eine +"a <br> Lenin Pav" + oc +"n Alvarez <html/>");
-		lblTitle.setBounds(130,7,170,67);
+		lblNames = new JLabel ("<html>Elaborado por: <br> Ra" + uc +"l J. Dami"+ ac +"n Maga" + eine +"a <br> Lenin Pav" + oc +"n Alvarez <html/>");
+		lblNames.setBounds(300,7,170,67);
+		add(lblNames);
+		lblPr = new JLabel ("<html>Bajo la asesoría de: <br> la profesora: <br> Adriana Vega Palos <html/>");
+		lblPr.setBounds(470,7,170,67);
+		add(lblPr);
+		lblTitle = new JLabel ("<html>Coyo Ahorcadas <html/>");
+		lblTitle.setFont(new Font("Bookman Old Style", Font.ROMAN_BASELINE, 27));
+		lblTitle.setForeground(new Color(52, 32, 31));
+		lblTitle.setBounds(100,7,170,67);
 		add(lblTitle);
 		pnlTitle = new JPanel();
 		pnlTitle.setBounds(10,10,660,60);
-		pnlTitle.setBackground(Color.white);
+		pnlTitle.setBackground(new Color(255, 216, 177));
 		add(pnlTitle);
 		
 		//panel de instrucciones
-		lblInst = new JLabel("<html>Instrucciones: Selecciona una de las sigui-<br>entes 4 opciones y haz clic en verificar</html>");
-		lblInst.setBounds(30,80,300,30);
+		lblInst = new JLabel("<html>Instrucciones: Haz click en verificar respondiendo <br> correctamente ¡Si te equivocas perder"+ ac +"s tus vidas!<html/>");
+		lblInst.setBounds(30,83,300,30);
 		add(lblInst);
 		pnlInst = new JPanel();
 		pnlInst.setBounds(10,80,330,40);
-		pnlInst.setBackground(Color.white);
+		pnlInst.setBackground(new Color(255, 216, 177));
 		add(pnlInst);
 		
 		
-		//panel de puntuacion
+		//panel de puntuaciOn
+		lblPunt = new JLabel("Puntos: 0");
+		lblPunt.setBounds(430,80,130,30);
+		add(lblPunt);
+		lblVida = new JLabel("Vidas: 6");
+		lblVida.setBounds(550,80,130,30);
+		add(lblVida);
 		pnlPunt = new JPanel();
 		pnlPunt.setBounds(350,80,320,30);
-		pnlPunt.setBackground(Color.white);
+		pnlPunt.setBackground(new Color(255, 216, 177));
 		add(pnlPunt);
 		
 		// Panel del dibujo del ahorcado
 		pnlA = new JPanel();
 		pnlA.setBounds(350,120,320,260);
-		pnlA.setBackground(Color.white);
+		pnlA.setBackground(new Color(255, 216, 177));
 		add(pnlA);
 
 		// Panel de las Preguntas
 		pnlPr = new JPanel();
 		pnlPr.setBounds(10,130,330,60);
-		pnlPr.setBackground(Color.white);
+		pnlPr.setBackground(new Color(255, 216, 177));
 		add(pnlPr);
 		//Elaboracion de pregunta
 		lblPregunta = new JLabel(strPregunta[contador]);
@@ -176,17 +190,20 @@ public class Proyecto extends JFrame implements ActionListener {
 		//Panel para las respuestas
 		pnlRe = new JPanel();
 		pnlRe.setBounds(10,200,330,230);
-		pnlRe.setBackground(Color.white);
+		pnlRe.setBackground(new Color(255, 216, 177));
 		add(pnlRe);
 		//Elaboracion de las opciones de respuesta
 		strRespuestas[contador] = randomize(strRespuestas[contador]);
 		for (int i = 0; i < strRespuestas[contador].length; i++){
 			rRespuestas[i] = new JRadioButton(strRespuestas[contador][i]);
+			rRespuestas[i].setBackground(new Color(194, 127, 121));
+			rRespuestas[i].setForeground(new Color(20, 65, 81));
 			bgRespuestas.add(rRespuestas[i]);
 		}
 		JPanel pnlRespuesta[] = {new JPanel(), new JPanel(), new JPanel(), new JPanel()};
 		for (int i = 0; i < rRespuestas.length; i++){
 			pnlRespuesta[i].setPreferredSize(new Dimension(300, 50));
+			pnlRespuesta[i].setBackground(new Color(194, 127, 121));
 			pnlRespuesta[i].add(rRespuestas[i]);
 			pnlRe.add(pnlRespuesta[i]);
 		}
@@ -194,7 +211,7 @@ public class Proyecto extends JFrame implements ActionListener {
 		// Panel y Boton de verificacion
 		btn1 = new JButton();
 		btn1.setIcon(new ImageIcon("verificar.gif"));
-		btn1.setBounds(430,393,49,35);
+		btn1.setBounds(430,391,49,35);
 		btn1.addActionListener(this);
 		add(btn1);
 		btn2 = new JButton();
@@ -204,9 +221,14 @@ public class Proyecto extends JFrame implements ActionListener {
 		add(btn2);
 		pnlBu = new JPanel();
 		pnlBu.setBounds(350,390,320,37); 
-		pnlBu.setBackground(Color.white);
+		pnlBu.setBackground(new Color(255, 216, 177));
 		add(pnlBu);
-
+		
+		//Panel de fondo
+		pnl = new JPanel();
+		pnl.setBounds(0,0,700,500); 
+		pnl.setBackground(new Color(97, 0, 35));
+		add(pnl);
 
 	}
 	
@@ -219,24 +241,20 @@ public class Proyecto extends JFrame implements ActionListener {
 		ahorca.drawLine(410, 180, 590, 180);
 		ahorca.drawLine(440, 220, 470, 180);
 		ahorca.drawLine(590, 180, 590, 210);          
-	    coyo = new ImageIcon("coyo.jpg");
+	    coyo = new ImageIcon("coyo.png");
 	    conversion = coyo.getImage();
 	    conversion = conversion.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
 	    coyo = new ImageIcon(conversion);
 	    coyo.paintIcon(this,ahorca,18,41);
 	    unam = new ImageIcon("unam.png");
 	    conversion = unam.getImage();
-	    conversion = conversion.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+	    conversion = conversion.getScaledInstance(60, 58, Image.SCALE_SMOOTH);
 	    unam = new ImageIcon(conversion);
-	    unam.paintIcon(this,ahorca,620,41);
-	    
-	    //ahorca.drawLine(70, 230, 70, 450);
+	    unam.paintIcon(this,ahorca,617,42);
 	}
 		
 	//Corroboracion de la respuesta
 	public static boolean checkPregunta(int intNPregunta, String respuesta, String[] clave){
-		//JOptionPane.showMessageDialog(null, respuesta);
-		//JOptionPane.showMessageDialog(null, clave);
 		if(respuesta.equals(clave[intNPregunta])){
 			JOptionPane.showMessageDialog(null, "Respuesta correcta");
 			return true;
@@ -266,18 +284,10 @@ public class Proyecto extends JFrame implements ActionListener {
 							terminar();
 							System.exit(0);
 						}
-						contador++;
-						lblPregunta.setText(strPregunta[contador]);
-						strRespuestas[contador] = randomize(strRespuestas[contador]);
-						for(int j = 0; j < rRespuestas.length; j++){
-							rRespuestas[j].setText(strRespuestas[contador][j]);
-						}
-						bgRespuestas.clearSelection();
 					//la respuesta es falsa
 					}else{
 						errores++;
 						int nVidas = vidas - errores;
-						JOptionPane.showMessageDialog(null, "Has cometido un error, llevas " + errores + " error(es)\nTe quedan " + nVidas + " vidas");
 						Graphics ahorca = pnlA.getGraphics();
 						ahorca.setColor(Color.BLACK);
 						switch (nVidas) {				        
@@ -307,22 +317,34 @@ public class Proyecto extends JFrame implements ActionListener {
 				        
 				        	default:
 				        
-				        	break; 
+				        	break;
+				        
 						}
+						lblVida.setText("Vidas: " + nVidas);
 						//Si has tenido 6 errores, pierdes el juego
 						if(errores == vidas){
 							terminar();
 							System.exit(0);
 						}
 					}
-					int nPregunta = contador + 1;
-					JOptionPane.showMessageDialog(null, "Vamos en la pregunta " + nPregunta);
-					break;
+					
+					lblPunt.setText("Puntos: " + correctas);
+					contador++;
+					if(contador == preguntas){
+						terminar();
+						System.exit(0);
+					}
+					lblPregunta.setText(strPregunta[contador]);
+					strRespuestas[contador] = randomize(strRespuestas[contador]);
+					for(int j = 0; j < rRespuestas.length; j++){
+						rRespuestas[j].setText(strRespuestas[contador][j]);
+					}
+					bgRespuestas.clearSelection();
 				}
 			}
 			//Si el boton de verificar se ha presionado sin seleccionar una respuesta
 			if(!respondido){
-				JOptionPane.showMessageDialog(null, "<html>Selecciona una opci" + oc + "n</html>");
+				JOptionPane.showMessageDialog(null, "<html>Selecciona una opci" + oc + "n </html>");
 			}
 		}
 		//Boton de salir
@@ -330,12 +352,12 @@ public class Proyecto extends JFrame implements ActionListener {
 			System.exit(0);
 		}
 	}
-	//Dibujo base del ahorcado
+	//Funcion para terminar
 	public void terminar(){
 		int calificacion = (correctas*10/preguntas);
-		JOptionPane.showMessageDialog(null, "<html>Tuviste " + correctas +" respuestas correctas y " + errores + " errores\nTuviste " + calificacion + " de calificaci" + oc + "n</html>");
+		JOptionPane.showMessageDialog(null, "<html>Tuviste " + correctas +" respuestas correctas y " + errores + " error" + oc + "neas </html>");
 		if(calificacion >= 6){
-			JOptionPane.showMessageDialog(null, "<html>Aprobaste el cuestionario, el programa terminar" + ac +" ahora</html>");
+			JOptionPane.showMessageDialog(null, "<html>Aprobaste el cuestionario, el programa terminar" + ac + " ahora </html>");
 		}else{
 			JOptionPane.showMessageDialog(null, "Reprobaste el cuestionario, reinicia el programa");
 		}
